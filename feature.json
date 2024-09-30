@@ -1,0 +1,8 @@
+{
+    "killer_feature": 123,
+    "system": {
+        "cpu": 2,
+        "ram": 4098,
+        "vram": 16000
+    }
+}
