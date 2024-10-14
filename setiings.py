@@ -1,2 +1,2 @@
-if 1 == 1:
-    print("True")
+import random 
+a = random.randint(1, 101)
