@@ -2,22 +2,22 @@ name: Deploy python bot
 on:
   push:
     branches:
-      =master
+      - master
 jobs:
   deploy:
-    runs-on:
-      ubuntu-latest
+    runs-on: ubuntu-latest
+   
     steps:
       - name: Checkout code
 
         uses: actions/checkout@v2
 
-      -name: install sshpass
+      - name: install sshpass
        run: sudo apt-get update && sudo apt-get install -y sshpass
       
-      -name: Transfer files to server
+      - name: Transfer files to server
        run: |
          sshpass -p "${{ secrets.REMOTE_PASSWORD }}" scp -o StrictHostKeyChecking=no -r ./* ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:/home/vasiliy/practice_ci      
       - name: Run Python scrypt
         run: |
-          -p "${{ secrets.REMOTE_PASSWORD }}" scp -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "cd /home/vasiliy/practice_ci && python3 main.py"
+         sshpass -p "${{ secrets.REMOTE_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "cd /home/vasiliy/practice_ci && python3 main.py"
