@@ -18,8 +18,8 @@ jobs:
 
     - name: Transfer files to server
       run: | 
-        sshpass -p "${{ secrets.REMOTE_PASSWORD }}" scp -o StrictHostKeyChecking=no -r ./* ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:/home/vasiliy/practice_ci/
+        sshpass -p "${{ secrets.REMOTE_PASSWORD }}" scp -P 2415 -o StrictHostKeyChecking=no -r ./* ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:/home/vasiliy/practice_ci/
         
     - name: Run python script
       run: |
-        sshpass -p "${{ secrets.REMOTE_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "cd /home/vasiliy/practice_ci/ && python3 main.py"
+        sshpass -p "${{ secrets.REMOTE_PASSWORD }}" ssh -P 2415 -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "cd /home/vasiliy/practice_ci/ && python3 main.py"
